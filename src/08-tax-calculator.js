@@ -26,5 +26,26 @@
  * @returns {number} Total tax amount owed
  */
 export function calculateTax(income) {
-  // Your code here
+  if (income <= 0) return 0;
+
+  let tax = 0;
+
+  //why to make income 70,000 after tax calculation? bcz we have calculaed the tax for >70000 so now next bracket will only calulate for remaining for which tax amount will be different
+  if (income > 70000) {
+    tax += (income - 70000) * 0.30;
+    income = 70000;
+  }
+
+  
+  if (income > 30000) {
+    tax += (income - 30000) * 0.20;
+    income = 30000;
+  }
+
+  
+  if (income > 10000) {
+    tax += (income - 10000) * 0.10;
+  }
+
+  return Number(tax.toFixed(2));
 }
